@@ -22,3 +22,13 @@ jobs:
     - name: Deploy HTML to EC2
       run: |
         scp -o StrictHostKeyChecking=no -r . ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/html/
+    
+    - name: multiple command
+      uses: appleboy/ssh-action@v1.2.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ~/.ssh/id_rsa
+        script: |
+          whoami
+          ls -al 
